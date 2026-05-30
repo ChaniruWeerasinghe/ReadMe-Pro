@@ -327,6 +327,7 @@
   width: 52px;
   height: 28px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .toggle-slider {
