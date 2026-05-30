@@ -363,74 +363,73 @@ export default function ViewerPage() {
                   />
                 </div>
               )}
-            </div>
 
-            {/* Mobile "More" Actions */}
-            <div className="viewer-actions__more-wrapper mobile-only">
+              {/* Mobile "More" Actions */}
+              <div className="viewer-actions__more-wrapper mobile-only">
+                <button 
+                  className="viewer-actions__more-trigger"
+                  onClick={() => setShowMoreActions(!showMoreActions)}
+                  title="More Actions"
+                >
+                  <MoreVertical size={18} />
+                </button>
 
-              <button 
-                className="viewer-actions__more-trigger"
-                onClick={() => setShowMoreActions(!showMoreActions)}
-                title="More Actions"
-              >
-                <MoreVertical size={18} />
-              </button>
+                {showMoreActions && (
+                  <>
+                    <div className="popover-overlay" onClick={() => setShowMoreActions(false)} />
+                    <div className="more-actions-panel animate-scale-in">
+                      {isOwner && (
+                        <button 
+                          className="btn btn-outline btn-sm"
+                          onClick={() => {
+                            setShareModalOpen(true);
+                            setShowMoreActions(false);
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                          </svg>
+                          <span>Share Note</span>
+                        </button>
+                      )}
 
-              {showMoreActions && (
-                <>
-                  <div className="popover-overlay" onClick={() => setShowMoreActions(false)} />
-                  <div className="more-actions-panel animate-scale-in">
-                    {isOwner && (
-                      <button 
-                        className="btn btn-outline btn-sm"
-                        onClick={() => {
-                          setShareModalOpen(true);
-                          setShowMoreActions(false);
-                        }}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
-                          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                        </svg>
-                        <span>Share Note</span>
-                      </button>
-                    )}
+                      {canDownload && (
+                        <button 
+                          className="btn btn-outline btn-sm"
+                          onClick={() => {
+                            handleCopyContent();
+                            setShowMoreActions(false);
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                          </svg>
+                          <span>Copy Note</span>
+                        </button>
+                      )}
 
-                    {canDownload && (
-                      <button 
-                        className="btn btn-outline btn-sm"
-                        onClick={() => {
-                          handleCopyContent();
-                          setShowMoreActions(false);
-                        }}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                        </svg>
-                        <span>Copy Note</span>
-                      </button>
-                    )}
-
-                    {(isOwner || note.allowDownload !== false) && (
-                      <button 
-                        className="btn btn-outline btn-sm"
-                        onClick={() => {
-                          setShowMoreActions(false);
-                          setShowDownloadOverlay(true);
-                        }}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                          <polyline points="7 10 12 15 17 10" />
-                          <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
-                        <span>Download Note...</span>
-                      </button>
-                    )}
-                  </div>
-                </>
-              )}
+                      {(isOwner || note.allowDownload !== false) && (
+                        <button 
+                          className="btn btn-outline btn-sm"
+                          onClick={() => {
+                            setShowMoreActions(false);
+                            setShowDownloadOverlay(true);
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                          </svg>
+                          <span>Download Note...</span>
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}

@@ -28,10 +28,20 @@ export default function Footer() {
             </div>
             <div className="footer__nav-group">
               <h4 className="footer__nav-title">Social</h4>
-              <a href="https://github.com/Chanii2024" target="_blank" rel="noopener noreferrer" className="footer__social-link">
-                <GithubIcon size={18} />
-                <span>GitHub</span>
-              </a>
+              <div className="footer__social-link footer__github-wrapper">
+                <div className="footer__github-trigger">
+                  <GithubIcon size={18} />
+                  <span>GitHub</span>
+                </div>
+                <div className="footer__github-dropdown">
+                  <a href="https://github.com/ChaniruWeerasinghe" target="_blank" rel="noopener noreferrer" className="footer__github-dropdown-item">
+                    ChaniruWeerasinghe (New)
+                  </a>
+                  <a href="https://github.com/Chanii2024" target="_blank" rel="noopener noreferrer" className="footer__github-dropdown-item">
+                    Chanii2024 (Legacy)
+                  </a>
+                </div>
+              </div>
               <a href="https://www.linkedin.com/in/chaniru-weerasinghe-36aa2a326/" target="_blank" rel="noopener noreferrer" className="footer__social-link">
                 <LinkedinIcon size={18} />
                 <span>LinkedIn</span>

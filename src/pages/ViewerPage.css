@@ -423,6 +423,24 @@
   .breadcrumbs svg:nth-of-type(1) {
     display: none;
   }
+
+  .viewer-actions {
+    gap: 8px;
+  }
+
+  .viewer-actions__right {
+    gap: 8px;
+  }
+
+  .view-mode-btn {
+    padding: 0 12px;
+    gap: 6px;
+  }
+
+  .viewer-actions__btn {
+    padding: 0 14px !important;
+    gap: 6px;
+  }
 }
 
 @media (min-width: 640px) {

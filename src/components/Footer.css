@@ -105,6 +105,69 @@
   transform: translateX(4px);
 }
 
+.footer__github-wrapper {
+  position: relative;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 8px; /* buffer for hover */
+  margin-bottom: -8px;
+}
+
+.footer__github-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__github-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all var(--transition-fast);
+  z-index: 100;
+  box-shadow: var(--shadow-float);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .footer__github-dropdown {
+  background: rgba(26, 26, 26, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer__github-wrapper:hover .footer__github-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.footer__github-dropdown-item {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.footer__github-dropdown-item:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
 .footer__bottom {
   display: flex;
   justify-content: space-between;
