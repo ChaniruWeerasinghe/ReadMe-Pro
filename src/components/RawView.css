@@ -1,0 +1,279 @@
+/* ===================================
+   RawView — Pixel-Perfect Professional Editor
+   =================================== */
+
+.raw-view {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: all var(--transition-smooth);
+}
+
+.raw-view__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 12px 0;
+  /* Adding 20px padding-right for breathing room */
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+  min-height: 56px;
+}
+
+
+.raw-view__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Desktop alignment: aligns label with the code content */
+  padding-left: 93px;
+  transition: padding var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+  .raw-view__left {
+    padding-left: 20px;
+  }
+}
+
+.raw-view__label {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .raw-view__label {
+    font-size: 1rem;
+  }
+}
+
+
+
+.raw-view__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Base button style — Reverted to standard */
+.raw-view__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.raw-view__btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* ONLY UI FIX FOR EDIT & COPY */
+.raw-view__btn--edit,
+.raw-view__btn--copy {
+  border-radius: var(--radius-full);
+  padding: 10px 24px;
+  /* Increased padding for a more premium, spacious look */
+  background: var(--accent);
+  color: var(--text-inverse);
+  border: 1px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+
+.raw-view__btn--edit:hover {
+  background: var(--accent-hover);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+
+.raw-view__btn--copy {
+  background: rgba(45, 45, 45, 0.08);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.raw-view__btn--copy:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+
+/* Other buttons stay standard */
+.raw-view__btn--save {
+  border-radius: var(--radius-full);
+  padding: 10px 24px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  border: 1px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.raw-view__btn--save:hover {
+  background: var(--accent-hover);
+  color: var(--text-inverse); /* Explicitly keep inverse text for contrast */
+  box-shadow: var(--shadow-md);
+}
+
+
+.raw-view__btn--cancel {
+  background: transparent;
+  padding: 10px 24px;
+  border: none;
+  color: var(--text-secondary);
+}
+
+.raw-view__btn--cancel:hover {
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.05);
+}
+
+
+
+/* ── Content Grid — The Sync Core ── */
+.raw-view__content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 400px;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden; /* Prevent parent from scrolling */
+}
+
+.raw-view__line-num,
+.raw-view__code,
+.raw-view__editor {
+  font-family: var(--font-mono) !important;
+  font-size: 0.9rem !important;
+  line-height: 24px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.raw-view__lines {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-light);
+  padding: 24px 0;
+  user-select: none;
+  min-height: 100%;
+}
+
+.raw-view__line-num {
+  display: block;
+  padding: 0 16px;
+  color: var(--text-muted);
+  text-align: right;
+  min-width: 60px;
+}
+
+@media (max-width: 640px) {
+  .raw-view__line-num {
+    padding: 0 8px;
+    min-width: 45px;
+  }
+}
+
+
+.raw-view__code-container {
+  padding: 24px 0;
+  min-width: 0;
+  overflow-x: auto; /* Only the code container scrolls now */
+  width: 100%;
+}
+
+.raw-view__code,
+.raw-view__editor {
+  padding: 0 32px !important;
+  white-space: pre !important;
+  tab-size: 2;
+  border: none !important;
+  background: transparent !important;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.raw-view__editor {
+  resize: none;
+  overflow: hidden;
+  outline: none !important;
+  display: block;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 640px) {
+  .raw-view__code,
+  .raw-view__editor {
+    padding: 0 16px !important;
+  }
+  
+  .raw-view__content {
+    min-height: 300px;
+  }
+}
+
+
+.raw-view__editor:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+
+.raw-view__code {
+  display: block;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .raw-view__btn span {
+    display: none;
+  }
+  
+  .raw-view__btn {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .raw-view__btn--save,
+  .raw-view__btn--edit,
+  .raw-view__btn--copy {
+    padding: 10px !important;
+    min-width: 40px;
+  }
+
+  .raw-view__toolbar {
+    padding: 12px;
+    min-height: 48px;
+  }
+}

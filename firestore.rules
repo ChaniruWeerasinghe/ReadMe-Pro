@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Notes: anyone can read public notes, only owner can write
+    match /notes/{noteId} {
+      allow read: if resource.data.isPublic == true || request.auth.uid == resource.data.ownerId;
+      allow create: if request.auth != null 
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.title is string
+        && request.resource.data.content is string;
+      allow update, delete: if request.auth != null 
+        && resource.data.ownerId == request.auth.uid;
+    }
+    
+    // Collections: anyone can read, only owner can write
+    match /collections/{collectionId} {
+      allow read: if true;
+      allow create: if request.auth != null 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if request.auth != null 
+        && resource.data.ownerId == request.auth.uid;
+    }
+  }
+}
