@@ -28,12 +28,6 @@
   position: relative;
 }
 
-[data-theme="dark"] .share-modal {
-  background: rgba(14, 14, 15, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
 
 .modal__header {
   padding: 32px 32px 24px 32px;
@@ -385,8 +379,7 @@ input:checked + .toggle-slider:before {
 @media (max-width: 580px) {
   .share-modal {
     max-width: 100% !important;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
+    height: auto;
+    max-height: 85vh;
   }
 }

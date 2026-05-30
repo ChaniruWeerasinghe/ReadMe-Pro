@@ -22,5 +22,13 @@ service cloud.firestore {
       allow update, delete: if request.auth != null 
         && resource.data.ownerId == request.auth.uid;
     }
+    // Shares: anyone can read (to resolve share links), only owner can write
+    match /shares/{shareId} {
+      allow read: if true;
+      allow create: if request.auth != null 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if request.auth != null 
+        && resource.data.ownerId == request.auth.uid;
+    }
   }
 }
