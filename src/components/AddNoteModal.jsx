@@ -281,7 +281,7 @@ export default function AddNoteModal({ isOpen, onClose, onSubmit, isSubmitting }
               value={content}
               onChange={handleContentChange}
               onBlur={() => handleBlur('content')}
-              rows={12}
+              rows={6}
               disabled={isSubmitting}
               autoComplete="off"
             />
