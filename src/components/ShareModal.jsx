@@ -135,6 +135,18 @@ export default function ShareModal({ isOpen, onClose, item, type }) {
     return level;
   };
 
+  // Lock body scroll
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   if (!isOpen || !item) return null;
 
   return (
@@ -155,13 +167,8 @@ export default function ShareModal({ isOpen, onClose, item, type }) {
             exit={{ scale: 0.95, opacity: 0, y: 30 }}
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
           >
-            <div className="modal__header">
-              <div className="modal__title-group">
-                <div className="modal__icon-circle">
-                  <ShareIcon />
-                </div>
-                <h2 className="modal__title">Share {type === 'note' ? 'Note' : 'Collection'}</h2>
-              </div>
+            <div className="share-modal__header">
+              <h2 className="share-modal__title">Share {type === 'note' ? 'Note' : 'Collection'}</h2>
               <button className="modal__close" onClick={onClose} aria-label="Close modal">
                 &times;
               </button>

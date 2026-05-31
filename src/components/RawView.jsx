@@ -21,6 +21,21 @@ const CheckIcon = () => (
   </svg>
 );
 
+const SaveIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+    <polyline points="17 21 17 13 7 13 7 21" />
+    <polyline points="7 3 7 8 15 8" />
+  </svg>
+);
+
+const CancelIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
 export default function RawView({ content, isOwner, onSave, isSaving }) {
   const [copied, setCopied] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -105,9 +120,11 @@ export default function RawView({ content, isOwner, onSave, isSaving }) {
           ) : (
             <>
               <button className="raw-view__btn raw-view__btn--cancel" onClick={handleCancel} disabled={isSaving}>
+                <CancelIcon />
                 <span>Cancel</span>
               </button>
               <button className="raw-view__btn raw-view__btn--save" onClick={handleSave} disabled={isSaving}>
+                <SaveIcon />
                 <span>{isSaving ? 'Saving...' : 'Save Changes'}</span>
               </button>
             </>

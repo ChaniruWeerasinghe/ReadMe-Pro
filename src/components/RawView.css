@@ -256,20 +256,14 @@
 }
 
 @media (max-width: 640px) {
-  .raw-view__btn span {
-    display: none;
-  }
-  
   .raw-view__btn {
-    padding: 10px;
-    justify-content: center;
+    padding: 8px 12px;
   }
 
   .raw-view__btn--save,
   .raw-view__btn--edit,
   .raw-view__btn--copy {
-    padding: 10px !important;
-    min-width: 40px;
+    padding: 8px 16px !important;
   }
 
   .raw-view__toolbar {

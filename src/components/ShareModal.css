@@ -29,7 +29,7 @@
 }
 
 
-.modal__header {
+.share-modal__header {
   padding: 32px 32px 24px 32px;
   display: flex;
   align-items: center;
@@ -38,13 +38,13 @@
   flex-shrink: 0;
 }
 
-.modal__title-group {
+.share-modal__title-group {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.modal__icon-circle {
+.share-modal__icon-circle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,7 +56,7 @@
   box-shadow: 0 8px 16px var(--accent-subtle);
 }
 
-.modal__title {
+.share-modal__title {
   font-size: 1.6rem !important;
   margin: 0 !important;
   font-weight: 800 !important;
